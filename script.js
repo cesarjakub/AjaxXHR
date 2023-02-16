@@ -1,48 +1,50 @@
-class Zakaznik{
-    constructor(ID_Nation, Nation, ID_Year, Year, Population , Slug_Nation){
-        this.ID_Nation = ID_Nation;
-        this.Nation = Nation;
-        this.ID_Year = ID_Year;
-        this.Year = Year;
-        this.Population = Population;
-        this.Slug_Nation = Slug_Nation;
+class Product{
+    constructor(id, title, description, price, discountPercentage , rating, stock, brand, category, thumbnail, images){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.discountPercentage = discountPercentage;
+        this.rating = rating;
+        this.stock = stock;
+        this.brand = brand;
+        this.category = category;
+        this.thumbnail = thumbnail;
+        this.images = images;
     }
 
     vypis(){
         let zprava = `<div class="card m-2" style="width: 18rem;">
+        <img src="${this.images[0]}" class="card-img-top" alt="img">
+        <div class="card-body">
+          <h5 class="card-title">${this.title}</h5>
+          <p class="card-text">${this.description}</p>
+        </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID nation: ${this.ID_Nation}</li>
-          <li class="list-group-item">Nation: ${this.Nation}</li>
-          <li class="list-group-item">ID year: ${this.ID_Year}</li>
-          <li class="list-group-item">Year: ${this.Year}</li>
-          <li class="list-group-item">Population: ${this.Population}</li>
-          <li class="list-group-item">Slug nation: ${this.Slug_Nation}</li>
+          <li class="list-group-item">Price: ${this.price}$</li>
+          <li class="list-group-item">Discount percentage: ${this.discountPercentage}%</li>
+          <li class="list-group-item">Rating: ${this.rating}</li>
+          <li class="list-group-item">Stock: ${this.stock}</li>
+          <li class="list-group-item">Brand: ${this.brand}</li>
+          <li class="list-group-item">Category: ${this.category}</li>
         </ul>
       </div>`;
       return zprava
     }
 
     vypisTable(){
-        let zprava = `<table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID Nation</th>
-            <th scope="col">Nation</th>
-            <th scope="col">ID year</th>
-            <th scope="col">Year</th>
-            <th scope="col">Population</th>
-            <th scope="col">Slug nation</th>
-          </tr>
-        </thead>
+        let zprava = `<table class="table table-striped m-2">
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>${this.ID_Nation}</td>
-            <td>${this.Nation}</td>
-            <td>${this.ID_Year}</td>
-            <td>${this.Year}</td>
-            <td>${this.Population}</td>
-            <td>${this.Slug_Nation}</td>
+            <th scope="row">${this.id}</th>
+            <td>${this.title}</td>
+            <td>${this.description}</td>
+            <td>${this.price}</td>
+            <td>@${this.discountPercentage}</td>
+            <td>${this.rating}</td>
+            <td>${this.stock}</td>
+            <td>@${this.brand}</td>
+            <td>${this.category}</td>
           </tr>
         </tbody>
       </table>`;
@@ -50,44 +52,50 @@ class Zakaznik{
     }
 }
 
-class EvidenceZakazniku{
+class EvidenceProduktu{
     constructor(){
-        this.zakaznici = [];
-        this.getZakaznici();
+        this.produkty = [];
+        this.getProduct();
+        console.log(this.produkty)
     }
 
-    getZakaznici(){
+    getProduct(){
         let xhttp = new XMLHttpRequest();
-        let url = "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
+        let url = "https://dummyjson.com/products";
         xhttp.open("GET", url);
         xhttp.send();
-        xhttp.onload = () =>{
+        xhttp.onload = (e) =>{
             let data = JSON.parse(xhttp.responseText);
             console.log(data);
-            data["data"].forEach(element => {
-                this.addZak(new Zakaznik(
-                  element.ID_Nation,
-                  element.Nation,
-                  element.ID_Year,
-                  element.Year,
-                  element.Population,
-                  element.Slug_Nation
+            data["products"].forEach(element => {
+                this.addProdukt(new Product(
+                    element.id,
+                    element.title,
+                    element.description,
+                    element.price,
+                    element.discountPercentage,
+                    element.rating,
+                    element.stock,
+                    element.brand,
+                    element.category,
+                    element.thumbnail,
+                    element.images
                 ));
             });
         }
     }
 
-    addZak(zak){
-        this.zakaznici.push(zak);
+    addProdukt(pro){
+        this.produkty.push(pro);
     }
-    delZak(id){
-        this.zakaznici.remove(id);
+    delProdukt(id){
+        this.produkty.remove(id);
     }
 
     print(){
         let dataCard = "";
-        this.zakaznici.forEach(zak =>{
-            dataCard += zak.vypis();
+        this.produkty.forEach(pro =>{
+            dataCard += pro.vypis();
         });
         let main = document.getElementById("main");
         main.innerHTML = dataCard;
@@ -95,15 +103,15 @@ class EvidenceZakazniku{
 
     printTable(){
         let dataTab = "";
-        this.zakaznici.forEach(zak =>{
-            dataTab += zak.vypisTable();
+        this.produkty.forEach(pro =>{
+            dataTab += pro.vypisTable();
         });
         let main = document.getElementById("main");
         main.innerHTML = dataTab;
     }
 
 }
-let evidence = new EvidenceZakazniku();
+let evidence = new EvidenceProduktu();
 
 let submitKrty = document.getElementById("karty");
 let tabulkaData = document.getElementById("dataTable");
