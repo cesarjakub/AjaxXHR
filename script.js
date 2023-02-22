@@ -76,6 +76,15 @@ class EvidenceProduktu {
     let url = "https://dummyjson.com/products";
     xhttp.open("GET", url);
     xhttp.send();
+
+    xhttp.onprogress = (event) => {
+      console.log(`Downloaded ${event.loaded} of ${event.total} bytes`)
+      let progres = document.getElementById("progres");
+      let complete = (event.loaded / event.total)*100;
+      console.log(complete);
+      progres.style.width = complete+"%";
+    }
+
     xhttp.onload = (e) => {
       let data = JSON.parse(xhttp.responseText);
       console.log(data);
@@ -96,6 +105,7 @@ class EvidenceProduktu {
           )
         );
       });
+      this.print();
     };
   }
 
@@ -112,6 +122,7 @@ class EvidenceProduktu {
       dataCard += pro.vypis();
     });
     let main = document.getElementById("main");
+    main.style.visibility = "visible";
     main.innerHTML = dataCard;
   }
 
@@ -121,13 +132,24 @@ class EvidenceProduktu {
       dataTab += pro.vypisTable();
     });
     let main = document.getElementById("main");
+    main.style.visibility = "visible";
     main.innerHTML = dataTab;
   }
+
+  saveToLocal() {
+    localStorage.setItem("produkts", JSON.stringify(this.products));
+  }
+
+  getFromLocal() {
+    localStorage.getItem("produkts");
+  }
 }
+
 let evidence = new EvidenceProduktu();
 
 let submitKrty = document.getElementById("karty");
 let tabulkaData = document.getElementById("dataTable");
+let saveToLocalButton = document.getElementById("save");
 
 submitKrty.addEventListener("click", () => {
   evidence.print();
@@ -137,10 +159,6 @@ tabulkaData.addEventListener("click", () => {
   evidence.printTable();
 });
 
-function svaeToLocal(){
-  localStorage.setItem("produkts", );
-}
-
-function removeFromLocal(){
-  localStorage.removeItem("produkts");
-}
+saveToLocalButton.addEventListener("click", () => {
+    evidence.saveToLocal();
+});

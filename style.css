@@ -27,4 +27,28 @@ button[type="submit"]:hover{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    border: solid 2px black;
+    border-radius: 10px;
+    margin: 20px;
+    visibility: hidden;
 }
+
+.bb{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar{
+    background-color: gray;
+    height: 20px;
+    width: 400px;
+}
+
+#progres{
+    height: 20px;
+    width: 0%;
+    background-color: #4CAF50;
+}
+  
