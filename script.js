@@ -26,21 +26,20 @@ class Product {
   }
 
   vypis() {
-    let zprava = `<div class="card m-2" style="width: 18rem;">
-        <img src="${this.images[0]}" class="card-img-top" alt="img">
-        <div class="card-body">
-          <h5 class="card-title">${this.title}</h5>
-          <p class="card-text">${this.description}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Price: ${this.price}$</li>
-          <li class="list-group-item">Discount percentage: ${this.discountPercentage}%</li>
-          <li class="list-group-item">Rating: ${this.rating}</li>
-          <li class="list-group-item">Stock: ${this.stock}</li>
-          <li class="list-group-item">Brand: ${this.brand}</li>
-          <li class="list-group-item">Category: ${this.category}</li>
-        </ul>
-      </div>`;
+    let zprava = 
+      `<div class="card m-2" style="width: 18rem;">
+      <div class="card-header">
+        ${this.title}
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">${this.description}</li>
+        <li class="list-group-item">${this.price}</li>
+        <li class="list-group-item">${this.discountPercentage}%</li>
+        <li class="list-group-item">${this.rating}</li>
+        <li class="list-group-item">${this.stock}</li>
+        <li class="list-group-item">${this.category}</li>
+      </ul>
+    </div>`;
     return zprava;
   }
 
@@ -80,7 +79,7 @@ class EvidenceProduktu {
     xhttp.onprogress = (event) => {
       console.log(`Downloaded ${event.loaded} of ${event.total} bytes`)
       let progres = document.getElementById("progres");
-      let complete = (event.loaded / event.total)*100;
+      let complete = (/*event.loaded*/ 100 / /*event.total*/ 100)*100;
       console.log(complete);
       progres.style.width = complete+"%";
     }
