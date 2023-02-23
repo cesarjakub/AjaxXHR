@@ -32,12 +32,12 @@ class Product {
         ${this.title}
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">${this.description}</li>
-        <li class="list-group-item">${this.price}</li>
-        <li class="list-group-item">${this.discountPercentage}%</li>
-        <li class="list-group-item">${this.rating}</li>
-        <li class="list-group-item">${this.stock}</li>
-        <li class="list-group-item">${this.category}</li>
+        <li class="list-group-item"> DES: ${this.description}</li>
+        <li class="list-group-item">PRICE: ${this.price}</li>
+        <li class="list-group-item"> DIS: ${this.discountPercentage}%</li>
+        <li class="list-group-item">RATING: ${this.rating}</li>
+        <li class="list-group-item">STOCK: ${this.stock}</li>
+        <li class="list-group-item">CATEGORY: ${this.category}</li>
       </ul>
     </div>`;
     return zprava;
@@ -82,6 +82,10 @@ class EvidenceProduktu {
       let complete = (/*event.loaded*/ 100 / /*event.total*/ 100)*100;
       console.log(complete);
       progres.style.width = complete+"%";
+    }
+
+    xhttp.onerror = (e) => {
+      console.log("Error");
     }
 
     xhttp.onload = (e) => {
@@ -158,6 +162,8 @@ tabulkaData.addEventListener("click", () => {
   evidence.printTable();
 });
 
+/*
 saveToLocalButton.addEventListener("click", () => {
     evidence.saveToLocal();
 });
+*/
