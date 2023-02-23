@@ -44,7 +44,7 @@ class Product {
   }
 
   vypisTable() {
-    let zprava = `<table class="table table-striped m-2">
+    let zprava = `<table class="table table-success table-striped m-2">
         <tbody>
           <tr>
             <th scope="row">${this.id}</th>
@@ -109,6 +109,7 @@ class EvidenceProduktu {
         );
       });
       this.print();
+      this.saveToLocal();
     };
   }
 
@@ -140,7 +141,7 @@ class EvidenceProduktu {
   }
 
   saveToLocal() {
-    localStorage.setItem("produkts", JSON.stringify(this.products));
+    localStorage.setItem("produkts", JSON.stringify(this.produkty));
   }
 
   getFromLocal() {
