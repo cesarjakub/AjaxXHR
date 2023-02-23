@@ -26,8 +26,7 @@ class Product {
   }
 
   vypis() {
-    let zprava = 
-      `<div class="card m-2" style="width: 18rem;">
+    let zprava = `<div class="card m-2" style="width: 18rem;">
       <div class="card-header">
         ${this.title}
       </div>
@@ -77,16 +76,16 @@ class EvidenceProduktu {
     xhttp.send();
 
     xhttp.onprogress = (event) => {
-      console.log(`Downloaded ${event.loaded} of ${event.total} bytes`)
+      console.log(`Downloaded ${event.loaded} of ${event.total} bytes`);
       let progres = document.getElementById("progres");
-      let complete = (/*event.loaded*/ 100 / /*event.total*/ 100)*100;
+      let complete = /*event.loaded*/ (100 / /*event.total*/ 100) * 100;
       console.log(complete);
-      progres.style.width = complete+"%";
-    }
+      progres.style.width = complete + "%";
+    };
 
     xhttp.onerror = (e) => {
       console.log("Error");
-    }
+    };
 
     xhttp.onload = (e) => {
       let data = JSON.parse(xhttp.responseText);

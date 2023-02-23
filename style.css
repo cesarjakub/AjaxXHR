@@ -1,55 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@300&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-.joe{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.joe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
-button[type="submit"]{
-    background-color: #4CAF50;
-    border: none;
-    padding: 15px 32px;
-    margin: 10px;
-    align-items: center;
-    text-decoration: none;
-    border-radius: 5px;
+button[type="submit"] {
+  background-color: #4caf50;
+  border: none;
+  padding: 15px 32px;
+  margin: 10px;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
 }
-button[type="submit"]:hover{
-    background-color: #419844;
-}
-
-#main{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    border: solid 2px black;
-    border-radius: 10px;
-    margin: 20px;
-    visibility: hidden;
+button[type="submit"]:hover {
+  background-color: #419844;
 }
 
-.bb{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+#main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border: solid 2px black;
+  border-radius: 10px;
+  margin: 20px;
+  visibility: hidden;
 }
 
-.bar{
-    background-color: gray;
-    height: 20px;
-    width: 400px;
+.bb {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-#progres{
-    height: 20px;
-    width: 0%;
-    background-color: #4CAF50;
+.bar {
+  background-color: gray;
+  height: 20px;
+  width: 400px;
 }
-  
+
+#progres {
+  height: 20px;
+  width: 0%;
+  background-color: #4caf50;
+}
